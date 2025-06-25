@@ -138,16 +138,21 @@ var Theme = class Theme {
      * @param {Number} hourIn24 hour in 24h format (0-23)
      * @returns the translated AM/Noon/PM abbreviations
      */
-    toPeriod(hourIn24) {
-        if (hourIn24 < 12) {
-            return _("AM");
-        } else if (hourIn24 == 12 && date.getMinutes() == 0 && date.getSeconds() == 0) {
-            return _("Noon");
-        } else {
-            return _("PM");
+     toPeriod(date) {
+        try {
+            let hourIn24 = date.getHours();
+            if (hourIn24 < 12) {
+                return _("am");
+            } else if (hourIn24 === 12 && date.getMinutes() === 0 && date.getSeconds() === 0) {
+                return _("noon");
+            } else {
+                return _("pm");
+            }
+        } catch (e) {
+            console.error(`Error in toPeriod: ${e}`);
+            return "pm";
         }
     }
-
     /**
      * Use this utility function to scale all your font sizes and widget sizes to match user preference.
      * 
