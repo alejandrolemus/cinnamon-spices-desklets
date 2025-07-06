@@ -141,8 +141,6 @@ var Theme = class Theme {
     toPeriod(hourIn24) {
         if (hourIn24 < 12) {
             return _("AM");
-        } else if (hourIn24 == 12 && date.getMinutes() == 0 && date.getSeconds() == 0) {
-            return _("Noon");
         } else {
             return _("PM");
         }
